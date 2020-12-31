@@ -48,7 +48,7 @@ export class ChessPieceData {
   }
   
   public get xPositionAsIndex() {
-    return boardLetters.findIndex((x) => this.x);
+    return boardLetters.findIndex((x) => x === this.x);
   }
   
   public moveTo(board: GameBoard, x: BoardXPositions, y: BoardYPositions) {

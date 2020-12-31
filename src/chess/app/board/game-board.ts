@@ -41,6 +41,8 @@ export class GameBoard {
   
   public getXPositionFromNum(index: number) { return boardLetters[index]; }
   
+  public getIndexFromLetter(letterInput: BoardXPositions) { return boardLetters.findIndex((letter) => letter === letterInput); }
+  
   public get WhitePieces() { return this._chessPieceData.filter(x => x.piece.color === PieceColor.WHITE); }
   
   public get BlackPieces() { return this._chessPieceData.filter(x => x.piece.color === PieceColor.BLACK); }

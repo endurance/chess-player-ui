@@ -37,32 +37,5 @@ export class RookMover extends BasicPieceMovement {
       }
     }
     return true;
-    // if (pieceData.xPosition === toPosition.x) {
-    //   const currentYPosition = pieceData.y;
-    //   const allPiecesOnX = gameBoard.getAllPiecesOnX(pieceData.xPosition);
-    //   const allTakenYPositions = allPiecesOnX.map((x) => Number(x.y));
-    //   allTakenYPositions.sort();
-    //   let betweenYPositions: number[];
-    //
-    //   if (currentYPosition < toPosition.y) {
-    //     betweenYPositions = range(Number(currentYPosition) + 1, Number(toPosition.y));
-    //   } else {
-    //     betweenYPositions = range(Number(toPosition.y), Number(currentYPosition));
-    //   }
-    //
-    //   for (let yPos of betweenYPositions) {
-    //     const yPosStr = yPos.toString() as BoardYPositions;
-    //     const doesPieceExist = gameBoard.isPieceAt(pieceData.x, yPosStr);
-    //     if (doesPieceExist) {
-    //       // const isEnemyPiece = gameBoard.isEnemyPieceAt(pieceData, pieceData.x, yPosStr);
-    //       // You cant move /through/ an enemy piece
-    //       return false;
-    //     }
-    //   }
-    //
-    //   return true;
-    // }
-    //
-    // return false;
   }
 }
