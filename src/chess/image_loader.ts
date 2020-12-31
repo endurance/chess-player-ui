@@ -5,11 +5,15 @@ export class AssetLoader {
   public async loadAssets(app: PIXI.Application) {
     const promise = new Promise((resolve, reject) => {
       const chessImages = Object.values(images);
-      app.loader.add(chessImages)
-        .load((loader, resources) => {
-          // console.log(loader, resources);
-          resolve({loader, resources});
-        });
+      if (app.loader) {
+        app.loader.add(chessImages)
+          .load((loader, resources) => {
+            // console.log(loader, resources);
+            resolve({loader, resources});
+          });
+      } else {
+        resolve({loader: app.loader });
+      }
     });
     await promise;
   }

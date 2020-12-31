@@ -1,4 +1,4 @@
-import { BoardLayout, BoardXPositions, BoardYPositions, ChessPieceData } from "./types";
+import { BoardLayout, boardLetters, BoardXPositions, BoardYPositions, ChessPieceData } from "./types";
 import { Sprite } from "pixi.js";
 import assert from "assert";
 import { BoardEventEmitter } from "./board-event-emitter";
@@ -34,6 +34,12 @@ export class GameBoard {
   public get AllPieces() { return this._chessPieceData; }
   
   public get AllAlivePieces() { return this._chessPieceData.filter(x => x.x); }
+  
+  public getAllPiecesOnX(x: BoardXPositions) { return this._chessPieceData.filter(piece => piece.x === x); }
+  
+  public getAllPiecesOnY(y: BoardYPositions) { return this._chessPieceData.filter(piece => piece.y === y); }
+  
+  public getXPositionFromNum(index: number) { return boardLetters[index]; }
   
   public get WhitePieces() { return this._chessPieceData.filter(x => x.piece.color === PieceColor.WHITE); }
   

@@ -6,7 +6,7 @@ import { Move } from "../../movement";
 import { Sprite } from "pixi.js";
 
 export class PawnMover implements PieceMovement {
-  private _hasMoved: false;
+  private _hasMoved = false;
   
   public canIMoveTo(gameBoard: GameBoard, {pieceData, toPosition}: CanIMoveToParams) {
     // 1. Can I take an enemy piece?
@@ -38,6 +38,7 @@ export class PawnMover implements PieceMovement {
   
   public moveTo(gameBoard: GameBoard, gameSprite: Sprite, x: BoardXPositions, y: BoardYPositions) {
     Move.to(gameBoard.TileLayout, gameSprite, x, y);
+    this._hasMoved = true;
   }
   
   private _findPosOrNeg(color: PieceColor) {

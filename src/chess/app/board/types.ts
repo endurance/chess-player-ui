@@ -47,6 +47,10 @@ export class ChessPieceData {
     return this.x;
   }
   
+  public get xPositionAsIndex() {
+    return boardLetters.findIndex((x) => this.x);
+  }
+  
   public moveTo(board: GameBoard, x: BoardXPositions, y: BoardYPositions) {
     const isMovePossible = this._movementObj.canIMoveTo(board, {
       pieceData: this,
