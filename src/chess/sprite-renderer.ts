@@ -38,7 +38,6 @@ export class SpriteRenderer {
     
     boardSprite.x = 0;
     boardSprite.y = 0;
-    console.log(boardSprite.width, boardSprite.height);
   
     boardSprite.scale.set(0.390243902439024, 0.390243902439024);
     this._app.stage.addChild(boardSprite);

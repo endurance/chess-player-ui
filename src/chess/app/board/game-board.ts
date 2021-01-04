@@ -14,8 +14,8 @@ import { BoardLocation } from "./board-location";
  * Outside of this class, I generate the applicable tiles nearer to the Pixi application concerns
  */
 export class GameBoard {
-  private readonly _chessPieceData: ChessPieceData[] = [];
   private readonly _layout: BoardLayout;
+  private readonly _chessPieceData: ChessPieceData[] = [];
   private _selectedPiece: ChessPieceData;
   private _boardSprite: Sprite;
   private _eventEmitter: BoardEventEmitter = new BoardEventEmitter(this);
@@ -53,7 +53,9 @@ export class GameBoard {
     return this._eventEmitter;
   }
   
-  public set setBoardSprite(boardSprite: Sprite) { this._boardSprite = boardSprite; }
+  public set setBoardSprite(boardSprite: Sprite) {
+    this._boardSprite = boardSprite;
+  }
   
   public addChessPieceSprite(sprite: Sprite, xPosition: BoardXPositions, yPosition: BoardYPositions) {
     const piecePosition = this._chessPieceData.find(
@@ -76,15 +78,18 @@ export class GameBoard {
       if (!this._selectedPiece) return;
       const point = event.data.global;
       const location = BoardLocation.atPoint(this, point);
-      const previousPiece = this.getPieceAt(location.xPosition, location.yPosition);
+      const previousPiece = this.findPieceAt(location.xPosition, location.yPosition);
       this._selectedPiece.moveTo(this, location.xPosition, location.yPosition);
-      if (previousPiece) {
-        this.removePiece(previousPiece);
-      }
+      if (previousPiece) { this.removePiece(previousPiece); }
       this._turnTracker.completeTurn();
     });
   }
   
+  /**
+   * Will return true if a piece is at this x,y coordinate on the board, else false
+   * @param x - Character X position on board
+   * @param y - A number between 1 - 8 on the y axis
+   */
   public isPieceAt(x: BoardXPositions, y: BoardYPositions) {
     return this._chessPieceData.some(pos => pos.x === x && pos.y === y);
   }
@@ -97,14 +102,24 @@ export class GameBoard {
    * @param y
    */
   public isEnemyPieceAt(data: ChessPieceData, x: BoardXPositions, y: BoardYPositions) {
-    const piece = this.getPieceAt(x, y);
+    const piece = this.findPieceAt(x, y);
     if (!piece) return null;
     return data.piece.color !== piece.piece.color;
   }
-  public getPieceAt(x: BoardXPositions, y: BoardYPositions) {
+  
+  /**
+   * Will return the ChessPieceData if found at x,y coordinate
+   * @param x - Character X position on board
+   * @param y - A number between 1 - 8 on the y axis
+   */
+  public findPieceAt(x: BoardXPositions, y: BoardYPositions | string): ChessPieceData {
     return this._chessPieceData.find(pos => pos.x === x && pos.y === y);
   }
   
+  /**
+   * Will remove a piece from the board
+   * @param pieceData - The Chess Piece to remove
+   */
   public removePiece(pieceData: ChessPieceData) {
     const { sprite } = pieceData.piece;
     sprite.destroy();

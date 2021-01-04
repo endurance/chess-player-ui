@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { ChessGame } from "../../chess/main";
-import { Container } from "@material-ui/core";
+// import { Container } from "@material-ui/core";
 
 export function ChessGameComponent() {
   const ref = React.useRef();
@@ -22,8 +23,6 @@ export function ChessGameComponent() {
   }, []);
   
   return (
-    <Container>
-      <div ref={ref}/>
-    </Container>
+    <div ref={ref}/>
   );
 }

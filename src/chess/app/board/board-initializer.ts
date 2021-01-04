@@ -1,6 +1,6 @@
 import { PieceColor, PieceType } from "../../img";
 import { BoardLayout, boardLetters, boardNumbers, ChessPieceData } from "./types";
-import { plainToClass } from "class-transformer";
+// import { plainToClass } from "class-transformer";
 
 const XPOSITION_TO_PIECE_MAP = {
   [PieceType.ROOK]: ["a", "h"],
